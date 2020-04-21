@@ -9,6 +9,10 @@
     "build": "next build",
     "start": "next start"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sixnames/next-docker.git"
+  },
   "dependencies": {
     "next": "9.3.5",
     "react": "16.13.1",
