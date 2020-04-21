@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mongo
+    container_name: app-db
+    ports:
+      - '27020:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_DATABASE=app-db
+      - DB_USERNAME=admin
+      - DB_PASSWORD=secret
+    volumes:
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
+      - ./data:/data/db
+
+  nextjs:
+    build: ./
+    container_name: app
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - nextjs

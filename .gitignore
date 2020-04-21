@@ -16,6 +16,7 @@
 /build
 .idea
 /public/images
+/data
 
 # misc
 .DS_Store
